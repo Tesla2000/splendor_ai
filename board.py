@@ -40,7 +40,6 @@ def generate_cards():
                          Tier.THIRD))
         except ValueError:
             pass
-
     return cards
 
 
@@ -65,7 +64,6 @@ class Board:
         self.cards[1] = self.cards[1][cards_in_row:]
         self.cards[2] = self.cards[2][cards_in_row:]
 
-
     @staticmethod
     def _shove_cards(deck):
         holder = []
@@ -81,11 +79,17 @@ class Board:
         return self.visible_cards.pop(index + cards_in_row * tier.value)
 
     def give_resource(self, amount):
-        for resource in amount:
-            if self.available_resources[resource] < amount[resource]:
-                raise ValueError
-            else:
-                self.available_resources[resource] -= amount[resource]
+        if isinstance(amount, tuple):
+            if len(amount) == 2 and amount[0] == amount[1]:
+                pass
+            for resource in amount:
+                self.available_resources[resource] -= 1
+        else:
+            for resource in amount:
+                if self.available_resources[resource] < amount[resource]:
+                    raise ValueError
+                else:
+                    self.available_resources[resource] -= amount[resource]
 
     def get_resource(self, amount):
         for resource in amount:
@@ -93,7 +97,6 @@ class Board:
 
     def reserve_card(self, tier, index):
         if index == cards_in_row:
-            print(tier)
             return self.cards[tier.value].pop()
         return self.take_card(tier, index)
 

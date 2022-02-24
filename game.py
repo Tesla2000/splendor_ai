@@ -3,7 +3,8 @@ from board import Board
 from enums import Tier, Resource
 import numpy as np
 
-
+resource_limit = 7
+gold_limit = 5
 class Game:
     def __init__(self, number_of_players=4):
         self.players = []
@@ -12,7 +13,8 @@ class Game:
         self.board = Board()
 
     def end_turn(self):
-        self.players.append(self.players.pop(0))
+        pass
+        # self.players.append(self.players.pop(0))
 
     def get_state(self):
         state = [self.board.available_resources[Resource.RED], self.board.available_resources[Resource.GREEN],
@@ -47,9 +49,18 @@ class Game:
         return np.array(state)
 
     def reset(self):
+        players = len(self.players)
         self.players = []
-        for _ in range(len(self.players)):
+        for _ in range(players):
             self.players.append(Player())
         self.board = Board()
+
+    def update_resources(self):
+        self.board.available_resources = {Resource.RED: resource_limit, Resource.GREEN: resource_limit, Resource.BLUE: resource_limit,
+                                    Resource.BROWN: resource_limit,
+                                    Resource.WHITE: resource_limit, Resource.GOLD: gold_limit}
+        for player in self.players:
+            for resource in player.resources:
+                self.board.available_resources[resource] -= player.resources[resource]
 
 

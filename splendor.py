@@ -103,4 +103,5 @@ def possible_option(combination, player_instance, game):
     wanted = combination.sort(reversed=True)
     for option in wanted:
         option_index = combination.index(option)
-        is_possible(option_index, player_instance, game)
+        if is_possible(option_index, player_instance, game):
+            return option_index

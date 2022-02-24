@@ -3,9 +3,9 @@ from enum import Enum
 
 class Tier(Enum):
     FIRST = 0
-    SECOND = 2
-    THIRD = 3
-    RESERVE = 4
+    SECOND = 1
+    THIRD = 2
+    RESERVE = 3
 
 
 class Resource(Enum):
