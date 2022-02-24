@@ -7,6 +7,8 @@ from copy import deepcopy
 from game import Game
 from aristocrat import Aristocrat
 
+from copy import deepcopy
+
 cards_in_row = 4
 player_resource_max = 10
 resource_limit_for_two = 4
@@ -53,26 +55,29 @@ res_trans = {1: Resource.RED, 2: Resource.GREEN, 3: Resource.BLUE, 4: Resource.B
 
 def is_possible(option_index, player_instance, game):
     if option_index in resource_111:
-        if sum(player_instance.resources.values) + len(options[option_index]) <= player_resource_max:
+        if sum(player_instance.resources.values()) + len(options[option_index]) <= player_resource_max:
             for resource in options[option_index]:
-                if game.available_resources[resource] < 1:
+                if game.available_resources.get(resource, 0) < 1:
                     break
             else:
                 return True
     elif option_index in resource_2:
-        if sum(player_instance.resources.values) + len(options[option_index]) <= player_resource_max:
+        if sum(player_instance.resources.values()) + len(options[option_index]) <= player_resource_max:
             for resource in options[option_index]:
                 if game.available_resources[resource] < resource_limit_for_two:
                     break
             else:
                 return True
     elif option_index in reserve_card:
-        if option_index[option_index][1] == 4:
-            if len(game.cards[option_index[option_index][0].value]) >= 1:
-                return True
-        return game.visible_cards[option_index[option_index][1]] is not None
+        if options[option_index][1] == 4:
+            if len(game.cards[options[option_index][0].value]) >= 1:
+                print(options[option_index][0])
+                print(game.cards[options[option_index][0].value])
+                if len(player_instance.reserve) < 3:
+                    return True
+        return game.visible_cards[options[option_index][1]] is not None
     elif option_index in build_card_row:
-        card = game.visible_cards[option_index[option_index][1]]
+        card = game.visible_cards[options[option_index][1]]
         if is_purchase_possible(player_instance, card):
             return True
     elif option_index in build_card_reserve:
@@ -94,36 +99,8 @@ def is_purchase_possible(player_instance, card):
             return False
 
 
-class Agent:
-    def __init__(self):
-        self.game = Game(number_of_players=2)
-
-    def best_possible_option(self, rating):
-        wanted = rating.sort(reversed=True)
-        for option in wanted:
-            option_index = rating.index(option)
-            if is_possible(option_index, self.game.players[0], self.game.board):
-                return option_index
-
-    def play_move(self, option_index):
-        current_player = self.game.players[0]
-        if option_index in resource_111 or option_index in resource_2:
-            current_player.get_resource(options[option_index])
-        elif option_index in reserve_card:
-            tier, index = options[option_index]
-            current_player.reserve(self.game.board.reserve_card(tier, index))
-        elif option_index in build_card_row:
-            tier, index = options[option_index]
-            card = self.game.board.take_card(tier, index)
-            current_player.pay(card.cost)
-            current_player.get_card(card)
-        elif option_index in build_card_reserve:
-            index = options[option_index]
-            current_player.pay(current_player.reserve[index].cost)
-            current_player.build_reserve(index)
-        self.game.board.check_aristocrats(current_player)
-        self.game.end_turn()
-
-game = Game(number_of_players=1)
-print(len(game.get_state()))
-
+def possible_option(combination, player_instance, game):
+    wanted = combination.sort(reversed=True)
+    for option in wanted:
+        option_index = combination.index(option)
+        is_possible(option_index, player_instance, game)

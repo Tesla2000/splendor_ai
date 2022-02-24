@@ -19,11 +19,18 @@ class Game:
                  self.board.available_resources[Resource.BLUE], self.board.available_resources[Resource.BROWN],
                  self.board.available_resources[Resource.WHITE], self.board.available_resources[Resource.GOLD]]
         for card in self.board.visible_cards:
-            state.extend(
-                (
-                    card.cost[Resource.RED], card.cost[Resource.GREEN], card.cost[Resource.BLUE],
-                    card.cost[Resource.BROWN],
-                    card.cost[Resource.WHITE], card.points, card.production.value))
+            if card:
+                state.extend(
+                    (
+                        card.cost[Resource.RED], card.cost[Resource.GREEN], card.cost[Resource.BLUE],
+                        card.cost[Resource.BROWN],
+                        card.cost[Resource.WHITE], card.points, card.production.value))
+            else:
+              state.extend(
+                    (
+                        1000, 1000, 1000,
+                        1000,
+                        1000, 0, 6))
         for aristocrat in self.board.aristocrats:
             state.extend((aristocrat.requirements.get(Resource.RED), aristocrat.requirements.get(Resource.GREEN),
                           aristocrat.requirements.get(Resource.BLUE), aristocrat.requirements.get(Resource.BROWN),
@@ -44,7 +51,5 @@ class Game:
         for _ in range(len(self.players)):
             self.players.append(Player())
         self.board = Board()
-player = Player()
-sum(player.resources.values())
 
 

@@ -38,6 +38,7 @@ class Player:
 
     def add_reserve(self, card):
         self.reserve.append(card)
+        print(len(self.reserve))
         if sum(self.resources.values()) < 10:
             self.resources[Resource.GOLD] = self.resources.get(Resource.GOLD, 0) + 1
 
@@ -52,6 +53,6 @@ class Player:
         if gold_needed > self.resources.get(Resource.GOLD, 0):
             raise ValueError("Too little gold")
         else:
-            self.resources[Resource.GOLD] -= gold_needed
+            self.resources[Resource.GOLD] = self.resources.get(Resource.GOLD, 0) - gold_needed
             for resource in cost:
                 self.resources[resource] = max(0, self.resources.get(resource, 0) - cost[resource])

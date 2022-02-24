@@ -61,6 +61,9 @@ class Board:
         for i in range(len(cards)):
             cards[i] = self._shove_cards(cards[i])
         self.visible_cards = self.cards[0][:cards_in_row] + self.cards[1][:cards_in_row] + self.cards[2][:cards_in_row]
+        self.cards[0] = self.cards[0][cards_in_row:]
+        self.cards[1] = self.cards[1][cards_in_row:]
+        self.cards[2] = self.cards[2][cards_in_row:]
 
 
     @staticmethod
@@ -72,9 +75,9 @@ class Board:
 
     def take_card(self, tier, index):
         if len(self.cards[tier.value]) > 0:
-            self.visible_cards.insert(self.cards[tier.value].pop(), cards_in_row * (tier.value + 1))
+            self.visible_cards.insert(cards_in_row * (tier.value + 1), self.cards[tier.value].pop())
         else:
-            self.visible_cards.insert(None, cards_in_row * (tier.value + 1))
+            self.visible_cards.insert(cards_in_row * (tier.value + 1), None)
         return self.visible_cards.pop(index + cards_in_row * tier.value)
 
     def give_resource(self, amount):
@@ -90,6 +93,7 @@ class Board:
 
     def reserve_card(self, tier, index):
         if index == cards_in_row:
+            print(tier)
             return self.cards[tier.value].pop()
         return self.take_card(tier, index)
 
@@ -100,6 +104,3 @@ class Board:
                     break
             else:
                 player.get_aristocrat(self.aristocrats.pop(aristocrat))
-
-
-
