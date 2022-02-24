@@ -1,0 +1,90 @@
+1	black	0	mine (black)	1	1	1	1	0
+1	black	0	mine (black)	1	2	1	1	0
+1	black	0	mine (black)	2	2	0	1	0
+1	black	0	mine (black)	0	0	1	3	1
+1	black	0	mine (black)	0	0	2	1	0
+1	black	0	mine (black)	2	0	2	0	0
+1	black	0	mine (black)	0	0	3	0	0
+1	black	1	mine (black)	0	4	0	0	0
+1	blue	0	mine (blue)	1	0	1	1	1
+1	blue	0	mine (blue)	1	0	1	2	1
+1	blue	0	mine (blue)	1	0	2	2	0
+1	blue	0	mine (blue)	0	1	3	1	0
+1	blue	0	mine (blue)	1	0	0	0	2
+1	blue	0	mine (blue)	0	0	2	0	2
+1	blue	0	mine (blue)	0	0	0	0	3
+1	blue	1	mine (blue)	0	0	0	4	0
+1	white	0	mine (white)	0	1	1	1	1
+1	white	0	mine (white)	0	1	2	1	1
+1	white	0	mine (white)	0	2	2	0	1
+1	white	0	mine (white)	3	1	0	0	1
+1	white	0	mine (white)	0	0	0	2	1
+1	white	0	mine (white)	0	2	0	0	2
+1	white	0	mine (white)	0	3	0	0	0
+1	white	1	mine (white)	0	0	4	0	0
+1	green	0	mine (green)	1	1	0	1	1
+1	green	0	mine (green)	1	1	0	1	2
+1	green	0	mine (green)	0	1	0	2	2
+1	green	0	mine (green)	1	3	1	0	0
+1	green	0	mine (green)	2	1	0	0	0
+1	green	0	mine (green)	0	2	0	2	0
+1	green	0	mine (green)	0	0	0	3	0
+1	green	1	mine (green)	0	0	0	0	4
+1	red	0	mine (red)	1	1	1	0	1
+1	red	0	mine (red)	2	1	1	0	1
+1	red	0	mine (red)	2	0	1	0	2
+1	red	0	mine (red)	1	0	0	1	3
+1	red	0	mine (red)	0	2	1	0	0
+1	red	0	mine (red)	2	0	0	2	0
+1	red	0	mine (red)	3	0	0	0	0
+1	red	1	mine (red)	4	0	0	0	0
+2	black	1	camels	3	2	2	0	0
+2	black	1	camels	3	0	3	0	2
+2	black	2	camels	0	1	4	2	0
+2	black	2	lapidary (black)	0	0	5	3	0
+2	black	2	lapidary (black)	5	0	0	0	0
+2	black	3	lapidary (black)	0	0	0	0	6
+2	blue	1	elephants	0	2	2	3	0
+2	blue	1	elephants	0	2	3	0	3
+2	blue	2	elephants	5	3	0	0	0
+2	blue	2	lapidary (blue)	2	0	0	1	4
+2	blue	2	lapidary (blue)	0	5	0	0	0
+2	blue	3	lapidary (blue)	0	6	0	0	0
+2	white	1	people in snow	0	0	3	2	2
+2	white	1	people in snow	2	3	0	3	0
+2	white	2	people in snow	0	0	1	4	2
+2	white	2	lapidary (white)	0	0	0	5	3
+2	white	2	lapidary (white)	0	0	0	5	0
+2	white	3	lapidary (white)	6	0	0	0	0
+2	green	1	guy (green)	3	0	2	3	0
+2	green	1	guy (green)	2	3	0	0	2
+2	green	2	guy (green)	4	2	0	0	1
+2	green	2	carrack	0	5	3	0	0
+2	green	2	carrack	0	0	5	0	0
+2	green	3	carrack	0	0	6	0	0
+2	red	1	felucca	2	0	0	2	3
+2	red	1	felucca	0	3	0	2	3
+2	red	2	felucca	1	4	2	0	0
+2	red	2	lapidary (red)	3	0	0	0	5
+2	red	2	lapidary (red)	0	0	0	0	5
+2	red	3	lapidary (red)	0	0	0	6	0
+3	black	3	street1	3	3	5	3	0
+3	black	4	street2	0	0	0	7	0
+3	black	4	street2	0	0	3	6	3
+3	black	5	street1	0	0	0	7	3
+3	blue	3	Venice	3	0	3	3	5
+3	blue	4	Venice	7	0	0	0	0
+3	blue	4	diamant shop	6	3	0	0	3
+3	blue	5	diamant shop	7	3	0	0	0
+3	white	3	building (white)	0	3	3	5	3
+3	white	4	Gioielleria	0	0	0	0	7
+3	white	4	Gioielleria	3	0	0	3	6
+3	white	5	building (white)	3	0	0	0	7
+3	green	3	timbered house	5	3	0	3	3
+3	green	4	bridge	0	7	0	0	0
+3	green	4	bridge	3	6	3	0	0
+3	green	5	timbered house	0	7	3	0	0
+3	red	3	equestrian statue	3	5	3	0	3
+3	red	4	equestrian statue	0	0	7	0	0
+3	red	4	building (red)	0	3	6	3	0
+3	red	5	building (red)	0	0	7	3	0
