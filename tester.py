@@ -5,7 +5,7 @@ import random
 from copy import deepcopy
 
 cards_in_row = 4
-player_resource_max = 60
+player_resource_max = 10
 resource_limit_for_two = 4
 resource_111 = range(25)
 resource_2 = range(25, 30)
@@ -62,11 +62,12 @@ class Tester:
         elif option_index in reserve_card:
             tier, index = options[option_index]
             self.current_player.reserve.append(self.game.board.reserve_card(tier, index))
-            if self.game.board.available_resources[Resource.GOLD] > 0:
+            if self.game.board.available_resources[Resource.GOLD] > 0 and sum(self.current_player.resources.values())<player_resource_max:
                 self.current_player.get_resource((Resource.GOLD,))
         elif option_index in build_card_row:
             tier, index = options[option_index]
             card = self.game.board.take_card(tier, index)
+            self.current_player.pay(card.cost)
             self.current_player.get_card(card)
         elif option_index in build_card_reserve:
             index = options[option_index]
@@ -76,7 +77,6 @@ class Tester:
         self.game.end_turn()
         end = self.current_player.points >= 15
         self.current_player = self.game.players[0]
-        self.game.update_resources()
         return end
 
     def _is_possible(self, option_index):
@@ -102,7 +102,8 @@ class Tester:
             return self.game.board.visible_cards[options[option_index][1]] is not None and len(
                 self.current_player.reserve) < 3
         elif option_index in build_card_row:
-            card = self.game.board.visible_cards[options[option_index][1]]
+            tier, index = options[option_index]
+            card = self.game.board.visible_cards[cards_in_row*tier.value+index]
             if self._is_purchase_possible(card):
                 return True
         elif option_index in build_card_reserve:

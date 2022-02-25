@@ -46,14 +46,16 @@ class Player:
         gold_needed = 0
         paid = {}
         for resource in cost:
-            gold_needed += max(0, self.resources.get(resource, 0) + self.get_production().get(resource, 0) - cost.get(
+            gold_needed += max(0, -self.resources.get(resource, 0) - self.get_production().get(resource, 0) + cost.get(
                 resource, 0))
+        print(cost)
+        print(gold_needed)
         if gold_needed > self.resources.get(Resource.GOLD, 0):
             raise ValueError("Too little gold")
         else:
             paid[Resource.GOLD] = gold_needed
             self.resources[Resource.GOLD] = self.resources.get(Resource.GOLD, 0) - gold_needed
             for resource in cost:
-                paid[resource] = max(0, self.resources.get(resource, 0) - cost[resource])
-                self.resources[resource] = max(0, self.resources.get(resource, 0) - cost[resource])
+                paid[resource] = max(0, cost[resource] - self.get_production().get(resource, 0))
+                self.resources[resource] = max(0, self.resources.get(resource, 0) - (cost[resource]-self.get_production().get(resource, 0)))
             return paid

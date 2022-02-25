@@ -5,15 +5,19 @@ import numpy as np
 
 resource_limit = 7
 gold_limit = 5
+
+
 class Game:
     def __init__(self, number_of_players=4):
         self.players = []
         for _ in range(number_of_players):
             self.players.append(Player())
         self.board = Board()
+        self.round = 0
 
     def end_turn(self):
-        pass
+        self.round += 1
+        self.update_resources()
         # self.players.append(self.players.pop(0))
 
     def get_state(self):
@@ -28,7 +32,7 @@ class Game:
                         card.cost[Resource.BROWN],
                         card.cost[Resource.WHITE], card.points, card.production.value))
             else:
-              state.extend(
+                state.extend(
                     (
                         1000, 1000, 1000,
                         1000,
@@ -54,13 +58,13 @@ class Game:
         for _ in range(players):
             self.players.append(Player())
         self.board = Board()
+        self.round = 0
 
     def update_resources(self):
-        self.board.available_resources = {Resource.RED: resource_limit, Resource.GREEN: resource_limit, Resource.BLUE: resource_limit,
-                                    Resource.BROWN: resource_limit,
-                                    Resource.WHITE: resource_limit, Resource.GOLD: gold_limit}
+        self.board.available_resources = {Resource.RED: resource_limit, Resource.GREEN: resource_limit,
+                                          Resource.BLUE: resource_limit,
+                                          Resource.BROWN: resource_limit,
+                                          Resource.WHITE: resource_limit, Resource.GOLD: gold_limit}
         for player in self.players:
             for resource in player.resources:
                 self.board.available_resources[resource] -= player.resources[resource]
-
-
