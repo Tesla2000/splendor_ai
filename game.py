@@ -26,11 +26,13 @@ class Game:
                  self.board.available_resources[Resource.WHITE], self.board.available_resources[Resource.GOLD]]
         for card in self.board.visible_cards:
             if card:
+                production = 5*[0]
+                production[card.production.value-1] = 1
                 state.extend(
                     (
                         card.cost[Resource.RED], card.cost[Resource.GREEN], card.cost[Resource.BLUE],
                         card.cost[Resource.BROWN],
-                        card.cost[Resource.WHITE], card.points, card.production.value))
+                        card.cost[Resource.WHITE], card.points, production))
             else:
                 state.extend(
                     (

@@ -136,11 +136,10 @@ while True:
     action = t.get_action()
     option = t.possible_option(action)
     if option is None:
-        # print("blocked")
+        print("blocked")
         t.game.reset()
         continue
     if t.play_step(option):
         print("Finished")
         t.game.reset()
-
 
