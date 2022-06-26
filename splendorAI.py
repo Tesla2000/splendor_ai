@@ -592,4 +592,4 @@ def run(config_file):
     print('\nBest genome:\n{!s}'.format(winner))
 
 
-run("configuration.txt")
+run("that_is_the_neat_part/configuration.txt")
